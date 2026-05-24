@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shuvo Karmakar — Mobile & AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c28;
+    --accent: #6c63ff;
+    --accent2: #ff6584;
+    --accent3: #43e6b5;
+    --text: #f0f0f8;
+    --muted: #7a7a9a;
+    --border: #2a2a3a;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent3);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent3); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 7rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+
+  .hero-name span {
+    display: block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: #c0c0d8;
+    max-width: 580px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.65s forwards;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.8s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: #7b73ff;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent3);
+    color: var(--accent3);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 0.7s 1s forwards;
+  }
+
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent3);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .skill-card-title {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+  }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.45rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
+  }
+
+  .timeline-meta {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-role {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-company {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent3);
+    margin-bottom: 0.8rem;
+  }
+
+  .timeline-desc {
+    color: #a0a0c0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .timeline-desc li {
+    margin-bottom: 0.3rem;
+    padding-left: 1rem;
+    position: relative;
+    list-style: none;
+  }
+
+  .timeline-desc li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent2);
+    transform: translateY(-3px);
+  }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .project-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: #9090b0;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    padding: 0.2rem 0.55rem;
+    background: rgba(108,99,255,0.15);
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 2px;
+    color: #a0a0ff;
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent3);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  .project-link:hover { text-decoration: underline; }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .edu-degree {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-school {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent3);
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-location {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-top: 0.3rem;
+  }
+
+  .award-banner {
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(255,101,132,0.08));
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .award-icon {
+    font-size: 1.5rem;
+  }
+
+  .award-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .award-sub {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.2rem;
+    margin: 1.5rem 0 2.5rem;
+    transition: color 0.2s;
+  }
+
+  .contact-email:hover { color: var(--accent); }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 7rem 1.25rem 3rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">SK.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="about">
+  <div class="hero-inner">
+    <p class="hero-tag">// Mobile &amp; AI Engineer</p>
+    <h1 class="hero-name">
+      Shuvo<span>Karmakar</span>
+    </h1>
+    <p class="hero-title">iOS · Android · Machine Learning · Computer Vision</p>
+    <p class="hero-bio">
+      7+ years building production mobile applications and AI-powered systems. From edge-inference smart cameras to scalable iOS SDKs — I bridge mobile engineering with applied machine learning.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:s_karmakar@icloud.com" class="btn btn-primary">Get in Touch</a>
+      <a href="https://github.com/shuvokr" target="_blank" class="btn btn-outline">GitHub</a>
+      <a href="https://linkedin.com/in/shuv0karmakar" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="https://leetcode.com/shuvo_karmakar" target="_blank" class="btn btn-outline">LeetCode</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">7+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div>
+        <span class="stat-num">8th</span>
+        <span class="stat-label">ACM ICPC Dhaka</span>
+      </div>
+      <div>
+        <span class="stat-num">iOS&Android</span>
+        <span class="stat-label">Platforms</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label reveal">// 02. Skills</p>
+  <h2 class="section-title reveal">What I work with</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <p class="skill-card-title">Languages</p>
+      <div class="skill-tags">
+        <span class="tag">Swift / SwiftUI</span>
+        <span class="tag">Objective-C</span>
+        <span class="tag">Kotlin</span>
+        <span class="tag">Jetpack</span>
+        <span class="tag">Dart</span>
+        <span class="tag">Python</span>
+        <span class="tag">C / C++</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-card-title">AI / Machine Learning</p>
+      <div class="skill-tags">
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">Seaborn</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">Kaggle</span>
+        <span class="tag">Ensembling</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-card-title">Tools &amp; Frameworks</p>
+      <div class="skill-tags">
+        <span class="tag">Git</span>
+        <span class="tag">Postman</span>
+        <span class="tag">TestFlight</span>
+        <span class="tag">XCTest</span>
+        <span class="tag">WireMock</span>
+        <span class="tag">n8n</span>
+        <span class="tag">Jira</span>
+        <span class="tag">Figma</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-card-title">Architecture</p>
+      <div class="skill-tags">
+        <span class="tag">MVVM</span>
+        <span class="tag">Page Object Pattern</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">CocoaPods</span>
+        <span class="tag">Edge AI</span>
+        <span class="tag">SDK Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label reveal">// 03. Experience</p>
+  <h2 class="section-title reveal">Where I've worked</h2>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Sep 2024 — Present</p>
+      <p class="timeline-role">Android Developer</p>
+      <p class="timeline-company">Coldsoil</p>
+      <ul class="timeline-desc">
+        <li>Leading native Android VPN application development with focus on performance and security</li>
+        <li>Explored open-source WireGuard implementations to inform protocol-level functionality</li>
+        <li>Collaborated on Figma design finalization and implemented complex features with direct client input</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Feb 2024 — Jun 2024</p>
+      <p class="timeline-role">Senior Software Engineer</p>
+      <p class="timeline-company">RootNext Solutions</p>
+      <ul class="timeline-desc">
+        <li>Developed automated UI and API testing suite for Greenlight app using Swift Page Object Pattern and XCTest</li>
+        <li>Utilized WireMock for API mocking; improved app quality and reduced regression testing costs</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Dec 2021 — Sep 2023</p>
+      <p class="timeline-role">Senior Software Engineer</p>
+      <p class="timeline-company">Misfit Technology Ltd</p>
+      <ul class="timeline-desc">
+        <li>Built a scalable iOS SDK from scratch enabling enhanced cross-platform functionality</li>
+        <li>Collaborated with Android lead to design for code reusability and simplicity</li>
+        <li>Published SDK to CocoaPods for easy integration by third-party developers</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Mar 2021 — Jun 2023</p>
+      <p class="timeline-role">Senior Software Engineer</p>
+      <p class="timeline-company">LifePlus BD</p>
+      <ul class="timeline-desc">
+        <li>Led full-cycle iOS development of hospital management app from concept to App Store launch</li>
+        <li>Implemented MVVM architecture, unit testing, and managed TestFlight beta releases</li>
+        <li>Integrated Adobe XD designs to deliver intuitive healthcare UX</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Oct 2018 — Jun 2019</p>
+      <p class="timeline-role">Software Engineer</p>
+      <p class="timeline-company">Anyconnect Bangladesh</p>
+      <ul class="timeline-desc">
+        <li>Developed Objective-C iOS controller app for AI-powered smart camera system with real-time monitoring</li>
+        <li>Integrated Java Spring Boot REST APIs to consume computer vision analytics and AI-driven camera events</li>
+        <li>Collaborated in 15-member team to deliver core mobile interface for edge-AI surveillance platform</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Aug 2017 — May 2018</p>
+      <p class="timeline-role">Intern Software Engineer</p>
+      <p class="timeline-company">Editr Apps Inc.</p>
+      <ul class="timeline-desc">
+        <li>Built production iOS features in Swift 3; contributed to popular app with strong user ratings</li>
+        <li>Developed additional module for gymnastics trainer app based on CodeCanyon template</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">// 04. Projects</p>
+  <h2 class="section-title reveal">Things I've built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <p class="project-num">01 — ML</p>
+      <p class="project-name">Titanic Survival Prediction</p>
+      <p class="project-desc">Kaggle competition: exploratory data analysis, feature engineering, and comparison of multiple models including Logistic Regression, Random Forest, Gradient Boosting, and neural networks. Achieved competitive leaderboard performance via hyperparameter tuning and ensembling.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Scikit-learn</span>
+        <span class="project-tag">Pandas</span>
+        <span class="project-tag">Ensembling</span>
+      </div>
+      <a href="https://www.kaggle.com/code/shuvokarmakar/predict-survival-on-the-titanic" target="_blank" class="project-link">View on Kaggle →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <p class="project-num">02 — AI</p>
+      <p class="project-name">Edge-AI Smart Camera Platform</p>
+      <p class="project-desc">iOS controller application for an AI-powered smart camera system. Enables real-time remote monitoring, event streaming, and intelligent notifications. Integrates computer vision analytics — object detection, motion analysis, and automated alerts from backend edge-AI systems.</p>
+      <div class="project-tags">
+        <span class="project-tag">Objective-C</span>
+        <span class="project-tag">Spring Boot</span>
+        <span class="project-tag">Computer Vision</span>
+        <span class="project-tag">Edge AI</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <p class="project-num">03 — iOS SDK</p>
+      <p class="project-name">Cross-Platform iOS SDK</p>
+      <p class="project-desc">Built a scalable iOS SDK from scratch for Misfit Technology, enabling enhanced cross-platform functionality. Designed collaboratively for code reusability, then published to CocoaPods for seamless integration by third-party developers.</p>
+      <div class="project-tags">
+        <span class="project-tag">Swift</span>
+        <span class="project-tag">CocoaPods</span>
+        <span class="project-tag">SDK Design</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <p class="project-num">04 — Automation</p>
+      <p class="project-name">n8n ML Workflow Automation</p>
+      <p class="project-desc">Built automated ML pipelines using n8n to chain data ingestion → preprocessing → model inference → notifications and dashboards. Demonstrates end-to-end ML ops thinking with visual workflow automation tools.</p>
+      <div class="project-tags">
+        <span class="project-tag">n8n</span>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">ML Ops</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <p class="project-num">05 — Android</p>
+      <p class="project-name">Android VPN Application</p>
+      <p class="project-desc">Leading native Android VPN app development at Coldsoil. Focus on performance, security, and WireGuard protocol integration. Collaborating on design and implementing complex client-facing features.</p>
+      <div class="project-tags">
+        <span class="project-tag">Kotlin</span>
+        <span class="project-tag">Jetpack</span>
+        <span class="project-tag">WireGuard</span>
+        <span class="project-tag">Security</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <p class="project-num">06 — Healthcare</p>
+      <p class="project-name">Hospital Management iOS App</p>
+      <p class="project-desc">Full-cycle iOS development for a hospital management application — from concept through App Store launch. Implemented MVVM architecture, unit testing, TestFlight beta program, and delivered intuitive healthcare UX from Adobe XD designs.</p>
+      <div class="project-tags">
+        <span class="project-tag">Swift</span>
+        <span class="project-tag">MVVM</span>
+        <span class="project-tag">TestFlight</span>
+        <span class="project-tag">HealthTech</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label reveal">// 05. Education</p>
+  <h2 class="section-title reveal">Background</h2>
+
+  <div class="edu-card reveal">
+    <div>
+      <p class="edu-degree">B.Sc. in Computer Science and Engineering</p>
+      <p class="edu-school">Daffodil International University</p>
+      <p class="edu-location">Dhaka, Bangladesh</p>
+    </div>
+    <p class="edu-year">Aug 2011 – Dec 2015</p>
+  </div>
+
+  <div class="award-banner reveal" style="margin-top:1.5rem;">
+    <span class="award-icon">🏆</span>
+    <div>
+      <p class="award-text">8th Place — ACM ICPC Dhaka Regional Contest</p>
+      <p class="award-sub">2013 · Competitive Programming</p>
+    </div>
+  </div>
+
+  <div class="award-banner reveal" style="margin-top:1rem; background: linear-gradient(135deg, rgba(67,230,181,0.1), rgba(108,99,255,0.08)); border-color: rgba(67,230,181,0.25);">
+    <span class="award-icon">📊</span>
+    <div>
+      <p class="award-text">Kaggle Certified — ML, Deep Learning, Pandas, Data Visualization</p>
+      <p class="award-sub">Kaggle Micro-Courses · Machine Learning Practitioner</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal" style="text-align:center">// 06. Contact</p>
+  <h2 class="section-title reveal">Let's work together</h2>
+  <p class="reveal" style="color: var(--muted); max-width: 480px; margin: 0 auto 1rem; font-size: 0.95rem;">
+    Open to AI Engineer roles focused on on-device ML, computer vision, mobile inference, or ML integration.
+  </p>
+  <a href="mailto:s_karmakar@icloud.com" class="contact-email reveal">s_karmakar@icloud.com</a>
+  <div class="contact-links reveal">
+    <a href="https://github.com/shuvokr" target="_blank" class="btn btn-outline">GitHub</a>
+    <a href="https://linkedin.com/in/shuv0karmakar" target="_blank" class="btn btn-outline">LinkedIn</a>
+    <a href="https://leetcode.com/shuvo_karmakar" target="_blank" class="btn btn-outline">LeetCode</a>
+    <a href="https://www.kaggle.com/code/shuvokarmakar" target="_blank" class="btn btn-outline">Kaggle</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built with ♥ · Shuvo Karmakar · Dhaka, Bangladesh · (+880) 1672-429953</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
