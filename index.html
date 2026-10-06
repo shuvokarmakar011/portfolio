@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --bg: #0a0a0f;
     --surface: #13131a;
@@ -21,9 +20,7 @@
     --mono: 'DM Mono', monospace;
     --sans: 'Syne', sans-serif;
   }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -31,7 +28,6 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
-
   /* Noise overlay */
   body::before {
     content: '';
@@ -42,7 +38,6 @@
     z-index: 999;
     opacity: 0.4;
   }
-
   /* NAV */
   nav {
     position: fixed;
@@ -56,20 +51,17 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-
   .nav-logo {
     font-family: var(--mono);
     font-size: 0.85rem;
     color: var(--accent3);
     letter-spacing: 0.05em;
   }
-
   .nav-links {
     display: flex;
     gap: 2rem;
     list-style: none;
   }
-
   .nav-links a {
     font-family: var(--mono);
     font-size: 0.75rem;
@@ -79,9 +71,7 @@
     text-transform: uppercase;
     transition: color 0.2s;
   }
-
   .nav-links a:hover { color: var(--accent3); }
-
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -91,7 +81,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .hero::after {
     content: '';
     position: absolute;
@@ -103,13 +92,11 @@
     background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .hero-inner {
     max-width: 900px;
     margin: 0 auto;
     width: 100%;
   }
-
   .hero-tag {
     font-family: var(--mono);
     font-size: 0.8rem;
@@ -120,7 +107,6 @@
     opacity: 0;
     animation: fadeUp 0.6s 0.2s forwards;
   }
-
   .hero-name {
     font-size: clamp(3.5rem, 9vw, 7rem);
     font-weight: 800;
@@ -130,7 +116,6 @@
     opacity: 0;
     animation: fadeUp 0.7s 0.35s forwards;
   }
-
   .hero-name span {
     display: block;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -138,7 +123,6 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .hero-title {
     font-family: var(--mono);
     font-size: 1rem;
@@ -147,7 +131,6 @@
     opacity: 0;
     animation: fadeUp 0.7s 0.5s forwards;
   }
-
   .hero-bio {
     font-size: 1.05rem;
     color: #c0c0d8;
@@ -157,7 +140,6 @@
     opacity: 0;
     animation: fadeUp 0.7s 0.65s forwards;
   }
-
   .hero-links {
     display: flex;
     gap: 1rem;
@@ -165,7 +147,6 @@
     opacity: 0;
     animation: fadeUp 0.7s 0.8s forwards;
   }
-
   .btn {
     display: inline-flex;
     align-items: center;
@@ -181,29 +162,24 @@
     cursor: pointer;
     border: none;
   }
-
   .btn-primary {
     background: var(--accent);
     color: #fff;
   }
-
   .btn-primary:hover {
     background: #7b73ff;
     transform: translateY(-2px);
   }
-
   .btn-outline {
     background: transparent;
     color: var(--text);
     border: 1px solid var(--border);
   }
-
   .btn-outline:hover {
     border-color: var(--accent3);
     color: var(--accent3);
     transform: translateY(-2px);
   }
-
   .hero-stats {
     display: flex;
     gap: 3rem;
@@ -213,14 +189,12 @@
     opacity: 0;
     animation: fadeUp 0.7s 1s forwards;
   }
-
   .stat-num {
     font-size: 2rem;
     font-weight: 700;
     color: var(--accent3);
     display: block;
   }
-
   .stat-label {
     font-family: var(--mono);
     font-size: 0.72rem;
@@ -228,14 +202,12 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
   /* SECTIONS */
   section {
     padding: 6rem 2.5rem;
     max-width: 1000px;
     margin: 0 auto;
   }
-
   .section-label {
     font-family: var(--mono);
     font-size: 0.75rem;
@@ -244,7 +216,6 @@
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
-
   .section-title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -252,14 +223,12 @@
     margin-bottom: 3rem;
     line-height: 1.1;
   }
-
   /* SKILLS */
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
   }
-
   .skill-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -267,12 +236,10 @@
     padding: 1.5rem;
     transition: border-color 0.2s, transform 0.2s;
   }
-
   .skill-card:hover {
     border-color: var(--accent);
     transform: translateY(-3px);
   }
-
   .skill-card-title {
     font-family: var(--mono);
     font-size: 0.75rem;
@@ -281,13 +248,11 @@
     text-transform: uppercase;
     margin-bottom: 1rem;
   }
-
   .skill-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-
   .tag {
     font-family: var(--mono);
     font-size: 0.75rem;
@@ -297,13 +262,11 @@
     border-radius: 3px;
     color: var(--text);
   }
-
   /* EXPERIENCE */
   .timeline {
     position: relative;
     padding-left: 2rem;
   }
-
   .timeline::before {
     content: '';
     position: absolute;
@@ -313,12 +276,10 @@
     width: 1px;
     background: var(--border);
   }
-
   .timeline-item {
     position: relative;
     margin-bottom: 3rem;
   }
-
   .timeline-item::before {
     content: '';
     position: absolute;
@@ -330,7 +291,6 @@
     background: var(--accent);
     box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
   }
-
   .timeline-meta {
     font-family: var(--mono);
     font-size: 0.75rem;
@@ -338,33 +298,28 @@
     margin-bottom: 0.3rem;
     letter-spacing: 0.05em;
   }
-
   .timeline-role {
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.2rem;
   }
-
   .timeline-company {
     font-family: var(--mono);
     font-size: 0.85rem;
     color: var(--accent3);
     margin-bottom: 0.8rem;
   }
-
   .timeline-desc {
     color: #a0a0c0;
     font-size: 0.9rem;
     line-height: 1.7;
   }
-
   .timeline-desc li {
     margin-bottom: 0.3rem;
     padding-left: 1rem;
     position: relative;
     list-style: none;
   }
-
   .timeline-desc li::before {
     content: '→';
     position: absolute;
@@ -372,14 +327,12 @@
     color: var(--accent);
     font-size: 0.8rem;
   }
-
   /* PROJECTS */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
   }
-
   .project-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -389,25 +342,21 @@
     flex-direction: column;
     transition: border-color 0.2s, transform 0.2s;
   }
-
   .project-card:hover {
     border-color: var(--accent2);
     transform: translateY(-3px);
   }
-
   .project-num {
     font-family: var(--mono);
     font-size: 0.7rem;
     color: var(--muted);
     margin-bottom: 1rem;
   }
-
   .project-name {
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.6rem;
   }
-
   .project-desc {
     font-size: 0.88rem;
     color: #9090b0;
@@ -415,14 +364,12 @@
     flex: 1;
     margin-bottom: 1.2rem;
   }
-
   .project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: 1rem;
   }
-
   .project-tag {
     font-family: var(--mono);
     font-size: 0.68rem;
@@ -432,7 +379,6 @@
     border-radius: 2px;
     color: #a0a0ff;
   }
-
   .project-link {
     font-family: var(--mono);
     font-size: 0.75rem;
@@ -440,9 +386,7 @@
     text-decoration: none;
     letter-spacing: 0.05em;
   }
-
   .project-link:hover { text-decoration: underline; }
-
   /* EDUCATION */
   .edu-card {
     background: var(--surface);
@@ -455,25 +399,21 @@
     gap: 2rem;
     flex-wrap: wrap;
   }
-
   .edu-degree {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.3rem;
   }
-
   .edu-school {
     font-family: var(--mono);
     font-size: 0.85rem;
     color: var(--accent3);
     margin-bottom: 0.5rem;
   }
-
   .edu-location {
     font-size: 0.85rem;
     color: var(--muted);
   }
-
   .edu-year {
     font-family: var(--mono);
     font-size: 0.8rem;
@@ -481,7 +421,6 @@
     white-space: nowrap;
     padding-top: 0.3rem;
   }
-
   .award-banner {
     margin-top: 1.5rem;
     background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(255,101,132,0.08));
@@ -492,28 +431,23 @@
     align-items: center;
     gap: 1rem;
   }
-
   .award-icon {
     font-size: 1.5rem;
   }
-
   .award-text {
     font-size: 0.95rem;
     font-weight: 600;
   }
-
   .award-sub {
     font-family: var(--mono);
     font-size: 0.78rem;
     color: var(--muted);
     margin-top: 0.15rem;
   }
-
   /* CONTACT */
   #contact {
     text-align: center;
   }
-
   .contact-email {
     display: inline-block;
     font-size: clamp(1.3rem, 3vw, 2rem);
@@ -525,16 +459,13 @@
     margin: 1.5rem 0 2.5rem;
     transition: color 0.2s;
   }
-
   .contact-email:hover { color: var(--accent); }
-
   .contact-links {
     display: flex;
     justify-content: center;
     gap: 1.2rem;
     flex-wrap: wrap;
   }
-
   /* FOOTER */
   footer {
     text-align: center;
@@ -545,24 +476,20 @@
     color: var(--muted);
     letter-spacing: 0.08em;
   }
-
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
   .reveal {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-
   .reveal.visible {
     opacity: 1;
     transform: none;
   }
-
   /* DIVIDER */
   .divider {
     width: 100%;
@@ -571,7 +498,6 @@
     max-width: 1000px;
     margin: 0 auto;
   }
-
   /* RESPONSIVE */
   @media (max-width: 640px) {
     nav { padding: 1rem 1.25rem; }
@@ -583,7 +509,6 @@
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-logo">SK.dev</div>
   <ul class="nav-links">
@@ -605,7 +530,7 @@
     </h1>
     <p class="hero-title">iOS · Android · Machine Learning · Computer Vision</p>
     <p class="hero-bio">
-      7+ years building production mobile applications and AI-powered systems. From edge-inference smart cameras to scalable iOS SDKs — I bridge mobile engineering with applied machine learning.
+      7+ years building production mobile applications and AI-powered systems. From edge-inference smart cameras to scalable iOS SDKs and native Android VPN apps — I bridge mobile engineering with applied machine learning.
     </p>
     <div class="hero-links">
       <a href="mailto:s_karmakar@icloud.com" class="btn btn-primary">Get in Touch</a>
@@ -623,7 +548,7 @@
         <span class="stat-label">ACM ICPC Dhaka</span>
       </div>
       <div>
-        <span class="stat-num">iOS&Android</span>
+        <span class="stat-num">iOS &amp; Android</span>
         <span class="stat-label">Platforms</span>
       </div>
     </div>
@@ -640,13 +565,12 @@
     <div class="skill-card reveal">
       <p class="skill-card-title">Languages</p>
       <div class="skill-tags">
-        <span class="tag">Swift / SwiftUI</span>
+        <span class="tag">Swift</span>
         <span class="tag">Objective-C</span>
         <span class="tag">Kotlin</span>
-        <span class="tag">Jetpack</span>
         <span class="tag">Dart</span>
         <span class="tag">Python</span>
-        <span class="tag">C / C++</span>
+        <span class="tag">C++</span>
       </div>
     </div>
     <div class="skill-card reveal">
@@ -656,10 +580,10 @@
         <span class="tag">Pandas</span>
         <span class="tag">NumPy</span>
         <span class="tag">Matplotlib</span>
-        <span class="tag">Seaborn</span>
         <span class="tag">Deep Learning</span>
         <span class="tag">Kaggle</span>
         <span class="tag">Ensembling</span>
+        <span class="tag">Feature Engineering</span>
       </div>
     </div>
     <div class="skill-card reveal">
@@ -671,19 +595,21 @@
         <span class="tag">XCTest</span>
         <span class="tag">WireMock</span>
         <span class="tag">n8n</span>
-        <span class="tag">Jira</span>
         <span class="tag">Figma</span>
+        <span class="tag">Swift Package Manager</span>
+        <span class="tag">CocoaPods</span>
       </div>
     </div>
     <div class="skill-card reveal">
-      <p class="skill-card-title">Architecture</p>
+      <p class="skill-card-title">Architecture &amp; Platforms</p>
       <div class="skill-tags">
         <span class="tag">MVVM</span>
         <span class="tag">Page Object Pattern</span>
         <span class="tag">REST APIs</span>
-        <span class="tag">CocoaPods</span>
-        <span class="tag">Edge AI</span>
         <span class="tag">SDK Design</span>
+        <span class="tag">WireGuard</span>
+        <span class="tag">Edge AI</span>
+        <span class="tag">Jetpack</span>
       </div>
     </div>
   </div>
@@ -700,54 +626,54 @@
     <div class="timeline-item reveal">
       <p class="timeline-meta">Sep 2024 — Present</p>
       <p class="timeline-role">Android Developer</p>
-      <p class="timeline-company">Coldsoil</p>
+      <p class="timeline-company">coldsoil</p>
       <ul class="timeline-desc">
         <li>Leading native Android VPN application development with focus on performance and security</li>
-        <li>Explored open-source WireGuard implementations to inform protocol-level functionality</li>
+        <li>Explored open-source WireGuard implementations on GitHub to inform protocol-level functionality</li>
         <li>Collaborated on Figma design finalization and implemented complex features with direct client input</li>
       </ul>
     </div>
 
     <div class="timeline-item reveal">
       <p class="timeline-meta">Feb 2024 — Jun 2024</p>
-      <p class="timeline-role">Senior Software Engineer</p>
+      <p class="timeline-role">Senior Software Engineer (TAE)</p>
       <p class="timeline-company">RootNext Solutions</p>
       <ul class="timeline-desc">
         <li>Developed automated UI and API testing suite for Greenlight app using Swift Page Object Pattern and XCTest</li>
-        <li>Utilized WireMock for API mocking; improved app quality and reduced regression testing costs</li>
+        <li>Utilized WireMock for API mocking, followed team coding standards to ensure reliable, maintainable tests</li>
+        <li>Improved app quality and reduced regression testing costs through efficient automation</li>
       </ul>
     </div>
 
     <div class="timeline-item reveal">
       <p class="timeline-meta">Dec 2021 — Sep 2023</p>
-      <p class="timeline-role">Senior Software Engineer</p>
+      <p class="timeline-role">Senior Software Engineer (SDK)</p>
       <p class="timeline-company">Misfit Technology Ltd</p>
       <ul class="timeline-desc">
-        <li>Built a scalable iOS SDK from scratch enabling enhanced cross-platform functionality</li>
+        <li>Built a scalable iOS SDK from scratch</li>
         <li>Collaborated with Android lead to design for code reusability and simplicity</li>
-        <li>Published SDK to CocoaPods for easy integration by third-party developers</li>
+        <li>Published SDK, build Swift Package Manager (SPM) and CocoaPod for easy integration by developers</li>
       </ul>
     </div>
 
     <div class="timeline-item reveal">
       <p class="timeline-meta">Mar 2021 — Jun 2023</p>
-      <p class="timeline-role">Senior Software Engineer</p>
+      <p class="timeline-role">Senior Software Engineer (APP)</p>
       <p class="timeline-company">LifePlus BD</p>
       <ul class="timeline-desc">
-        <li>Led full-cycle iOS development of hospital management app from concept to App Store launch</li>
+        <li>Lead full-cycle iOS development of hospital management app from concept to App Store launch</li>
         <li>Implemented MVVM architecture, unit testing, and managed TestFlight beta releases</li>
-        <li>Integrated Adobe XD designs to deliver intuitive healthcare UX</li>
+        <li>Followed Adobe XD designs to deliver intuitive, high-performance healthcare UX &amp; UI</li>
       </ul>
     </div>
 
     <div class="timeline-item reveal">
       <p class="timeline-meta">Oct 2018 — Jun 2019</p>
-      <p class="timeline-role">Software Engineer</p>
+      <p class="timeline-role">Software Engineer (APP)</p>
       <p class="timeline-company">Anyconnect Bangladesh</p>
       <ul class="timeline-desc">
-        <li>Developed Objective-C iOS controller app for AI-powered smart camera system with real-time monitoring</li>
-        <li>Integrated Java Spring Boot REST APIs to consume computer vision analytics and AI-driven camera events</li>
-        <li>Collaborated in 15-member team to deliver core mobile interface for edge-AI surveillance platform</li>
+        <li>Developed Objective-C iOS mobile controller app for Anyconnect's AI-powered smart camera system, enabling real-time remote monitoring, event streaming, and intelligent notifications</li>
+        <li>Integrated Java Spring Boot REST APIs to consume computer vision analytics and AI-driven camera events (object detection, motion analysis, alerts) from backend</li>
       </ul>
     </div>
 
@@ -756,7 +682,7 @@
       <p class="timeline-role">Intern Software Engineer</p>
       <p class="timeline-company">Editr Apps Inc.</p>
       <ul class="timeline-desc">
-        <li>Built production iOS features in Swift 3; contributed to popular app with strong user ratings</li>
+        <li>Built production iOS features in Swift 3 under mentorship, contributed to popular app with strong user ratings</li>
         <li>Developed additional module for gymnastics trainer app based on CodeCanyon template</li>
       </ul>
     </div>
@@ -775,7 +701,7 @@
     <div class="project-card reveal">
       <p class="project-num">01 — ML</p>
       <p class="project-name">Titanic Survival Prediction</p>
-      <p class="project-desc">Kaggle competition: exploratory data analysis, feature engineering, and comparison of multiple models including Logistic Regression, Random Forest, Gradient Boosting, and neural networks. Achieved competitive leaderboard performance via hyperparameter tuning and ensembling.</p>
+      <p class="project-desc">Kaggle competition: exploratory data analysis, feature engineering, data cleaning/visualization. Trained and compared multiple models (Logistic Regression, Random Forest, Gradient Boosting, basic neural nets). Achieved competitive leaderboard performance through hyperparameter tuning and ensemble techniques.</p>
       <div class="project-tags">
         <span class="project-tag">Python</span>
         <span class="project-tag">Scikit-learn</span>
@@ -800,9 +726,10 @@
     <div class="project-card reveal">
       <p class="project-num">03 — iOS SDK</p>
       <p class="project-name">Cross-Platform iOS SDK</p>
-      <p class="project-desc">Built a scalable iOS SDK from scratch for Misfit Technology, enabling enhanced cross-platform functionality. Designed collaboratively for code reusability, then published to CocoaPods for seamless integration by third-party developers.</p>
+      <p class="project-desc">Built a scalable iOS SDK from scratch for Misfit Technology. Collaborated with Android lead for code reusability and simplicity. Published via Swift Package Manager (SPM) and CocoaPods for easy integration by third-party developers.</p>
       <div class="project-tags">
         <span class="project-tag">Swift</span>
+        <span class="project-tag">SPM</span>
         <span class="project-tag">CocoaPods</span>
         <span class="project-tag">SDK Design</span>
       </div>
@@ -811,7 +738,7 @@
     <div class="project-card reveal">
       <p class="project-num">04 — Automation</p>
       <p class="project-name">n8n ML Workflow Automation</p>
-      <p class="project-desc">Built automated ML pipelines using n8n to chain data ingestion → preprocessing → model inference → notifications and dashboards. Demonstrates end-to-end ML ops thinking with visual workflow automation tools.</p>
+      <p class="project-desc">Built automated ML workflows using n8n to chain data ingestion → preprocessing → model inference → notifications/dashboards. Demonstrates end-to-end ML ops thinking with visual workflow automation tools.</p>
       <div class="project-tags">
         <span class="project-tag">n8n</span>
         <span class="project-tag">Python</span>
@@ -822,7 +749,7 @@
     <div class="project-card reveal">
       <p class="project-num">05 — Android</p>
       <p class="project-name">Android VPN Application</p>
-      <p class="project-desc">Leading native Android VPN app development at Coldsoil. Focus on performance, security, and WireGuard protocol integration. Collaborating on design and implementing complex client-facing features.</p>
+      <p class="project-desc">Leading native Android VPN app development at coldsoil. Focus on performance, security, and WireGuard protocol integration. Collaborating on Figma design finalization and implementing complex client-facing features.</p>
       <div class="project-tags">
         <span class="project-tag">Kotlin</span>
         <span class="project-tag">Jetpack</span>
@@ -852,7 +779,6 @@
 <section id="education">
   <p class="section-label reveal">// 05. Education</p>
   <h2 class="section-title reveal">Background</h2>
-
   <div class="edu-card reveal">
     <div>
       <p class="edu-degree">B.Sc. in Computer Science and Engineering</p>
@@ -861,7 +787,6 @@
     </div>
     <p class="edu-year">Aug 2011 – Dec 2015</p>
   </div>
-
   <div class="award-banner reveal" style="margin-top:1.5rem;">
     <span class="award-icon">🏆</span>
     <div>
@@ -869,12 +794,11 @@
       <p class="award-sub">2013 · Competitive Programming</p>
     </div>
   </div>
-
   <div class="award-banner reveal" style="margin-top:1rem; background: linear-gradient(135deg, rgba(67,230,181,0.1), rgba(108,99,255,0.08)); border-color: rgba(67,230,181,0.25);">
     <span class="award-icon">📊</span>
     <div>
-      <p class="award-text">Kaggle Certified — ML, Deep Learning, Pandas, Data Visualization</p>
-      <p class="award-sub">Kaggle Micro-Courses · Machine Learning Practitioner</p>
+      <p class="award-text">Kaggle Micro-Courses — Intro to ML, Pandas, Data Visualization, Intro to Deep Learning</p>
+      <p class="award-sub">Kaggle · Machine Learning Practitioner</p>
     </div>
   </div>
 </section>
@@ -886,7 +810,7 @@
   <p class="section-label reveal" style="text-align:center">// 06. Contact</p>
   <h2 class="section-title reveal">Let's work together</h2>
   <p class="reveal" style="color: var(--muted); max-width: 480px; margin: 0 auto 1rem; font-size: 0.95rem;">
-    Open to AI Engineer roles focused on on-device ML, computer vision, mobile inference, or ML integration.
+    Open to roles in mobile engineering (iOS / Android), AI/ML integration, on-device inference, computer vision, or SDK development.
   </p>
   <a href="mailto:s_karmakar@icloud.com" class="contact-email reveal">s_karmakar@icloud.com</a>
   <div class="contact-links reveal">
@@ -910,9 +834,7 @@
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-
 </body>
 </html>
