@@ -27,16 +27,69 @@
     font-family: var(--sans);
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
   }
-  /* Noise overlay */
+  /* Multi-layer ambient background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 20%, rgba(108, 99, 255, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, rgba(255, 101, 132, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 70% at 70% 80%, rgba(67, 230, 181, 0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 30% 75%, rgba(108, 99, 255, 0.08) 0%, transparent 50%),
+      linear-gradient(180deg, #0a0a12 0%, #0c0c14 40%, #0a0a0f 100%);
+    pointer-events: none;
+  }
+  /* Soft animated glow orbs */
+  .bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.55;
+  }
+  .bg-orb-1 {
+    width: 420px;
+    height: 420px;
+    background: rgba(108, 99, 255, 0.35);
+    top: -80px;
+    left: -100px;
+    animation: orbFloat 18s ease-in-out infinite;
+  }
+  .bg-orb-2 {
+    width: 360px;
+    height: 360px;
+    background: rgba(255, 101, 132, 0.22);
+    top: 20%;
+    right: -120px;
+    animation: orbFloat 22s ease-in-out infinite reverse;
+  }
+  .bg-orb-3 {
+    width: 500px;
+    height: 500px;
+    background: rgba(67, 230, 181, 0.15);
+    bottom: -150px;
+    left: 30%;
+    animation: orbFloat 25s ease-in-out infinite;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -25px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.97); }
+  }
+  /* Refined noise / grain overlay */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 999;
-    opacity: 0.4;
+    opacity: 0.5;
   }
   /* NAV */
   nav {
@@ -47,9 +100,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,15,0.72);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid rgba(42,42,58,0.7);
   }
   .nav-logo {
     font-family: var(--mono);
@@ -84,13 +137,26 @@
   .hero::after {
     content: '';
     position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
+    top: -15%;
+    right: -8%;
+    width: 520px;
+    height: 520px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(108,99,255,0.22) 0%, rgba(108,99,255,0.06) 40%, transparent 70%);
     pointer-events: none;
+    filter: blur(20px);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 5%;
+    left: -5%;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(67,230,181,0.12) 0%, transparent 65%);
+    pointer-events: none;
+    filter: blur(30px);
   }
   .hero-inner {
     max-width: 900px;
@@ -509,6 +575,11 @@
 </style>
 </head>
 <body>
+<!-- Ambient background orbs -->
+<div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+<div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+<div class="bg-orb bg-orb-3" aria-hidden="true"></div>
+
 <nav>
   <div class="nav-logo">SK.dev</div>
   <ul class="nav-links">
